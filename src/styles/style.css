@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+.product-list {
+  display: grid;
+  grid-auto-rows: minmax(350px, auto);
+  grid-template-columns: repeat(3, minmax(300px, 450px));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  margin-bottom: 100px;
+
+
+}
+
+.productCard {
+  max-width: 400px;
+  border: 1px black solid;
+  margin: 15px;
+  padding: 15px;
+}
+
+.productCard-img {
+  max-width: 300px;
+  margin: 0 auto;
+}
