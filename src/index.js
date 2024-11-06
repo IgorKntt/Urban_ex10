@@ -1,4 +1,4 @@
-/*import { showProductCard } from "../modules/product_card.js";
+import { showProductCard } from "./modules/productCard/productCard.js"
 
 let productList = document.getElementById("product-list");
 let sampleProductData = {
@@ -16,11 +16,17 @@ let sampleProductData = {
 
 showProductCard(sampleProductData, productList);
 showProductCard(sampleProductData, productList);
-showProductCard(sampleProductData, productList);*/
+showProductCard(sampleProductData, productList);
 
 import { calc } from "./scripts/test";
 
 
-console.log("index.js code runs");
-console.log(calc(5, 8));
+console.log("index.js code runs. Dev server and auto reload works");
+console.log(calc(5, 15));
+
+
+
+
+
+
 

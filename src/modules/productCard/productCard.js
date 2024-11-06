@@ -1,4 +1,7 @@
+import './productCard.scss'
+
 export function showProductCard(productData, parent) {
+
   let productCard = document.createElement("div");
   productCard.className = 'productCard';
   productCard.dataset.productId = productData.id;
@@ -9,5 +12,6 @@ export function showProductCard(productData, parent) {
     <p class="productCard-price">${productData.price}</p>`;
 
   parent.appendChild(productCard);
+
 }
 
