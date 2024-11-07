@@ -1,8 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = (env) => {
+
+  const isDev = env.mode === 'development';
+  const isProd = env.mode === 'production';
+
   return {
 
     mode: env.mode ?? 'development',
@@ -10,12 +15,15 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.scss$/i,
-          use: ["style-loader", "css-loader", "sass-loader"]
+          use: [
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader"]
         },
       ],
     },
     entry: {
-      bundle: path.resolve(__dirname, 'src', 'index.js'),
+      main: path.resolve(__dirname, 'src', 'index.js'),
     },
     output: {
       path: path.resolve(__dirname, 'build'),
@@ -26,7 +34,11 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'template.html')
       }),
-    ],
+      isProd && new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].css'
+      })
+    ].filter(Boolean),
     devtool: 'inline-source-map',
     devServer: {
       port: env.port ?? 3000,
