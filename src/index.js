@@ -22,14 +22,15 @@ initProductList();
 console.log("loaded from index.js");
 
 console.log("index.js code runs. Dev server and auto reload works");
-/*
-btnLoadMore.addEventListener("click", (event) => {
-  loadMoreProducts();
-  event.target.setAttribute('disabled', '');
-});
-*/
 
-btnLoadMore.addEventListener("click", loadMoreProducts)
+btnLoadMore.addEventListener("click", (event) => {
+  loadMoreProducts(event.target);
+  event.target.setAttribute('disabled', '');
+  event.target.innerHTML = 'Загрузка...'
+});
+
+
+//btnLoadMore.addEventListener("click", loadMoreProducts)
 
 btnDeleteProduct.addEventListener("click", () => deleteProduct(10));
 btnAddProduct.addEventListener("click", () => addProduct(sampleProductData));

@@ -64,7 +64,7 @@ export function initProductList() {
   })
 }
 
-export function loadMoreProducts() {
+export function loadMoreProducts(btn) {
 
   console.log("load more products called");
 
@@ -87,6 +87,12 @@ export function loadMoreProducts() {
           showProductCard(productData.value, productList);
         }
       });
+      if (productsData.length < 20) {
+        btn.removeAttribute('disabled');
+        btn.innerHTML = "Загрузить еще";
+      } else {
+        btn.innerHTML = "Нет данных для загрузки";
+      }
     }).catch(error => console.log(error));
 }
 

@@ -83,4 +83,9 @@ main {
     padding: 15px;
     margin: 10px auto;
   }
+
+  &:disabled {
+    color: #ccc;
+    background-color: gray;
+  }
 }
