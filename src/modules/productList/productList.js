@@ -66,6 +66,8 @@ export function initProductList() {
 
 export function loadMoreProducts() {
 
+  console.log("load more products called");
+
   if (productsData.length >= 20) return;
 
   const loadCount = Math.min(6, 20 - productsData.length);
@@ -79,9 +81,9 @@ export function loadMoreProducts() {
 
         productsData.push(productData.value);
 
-        if (categoryFilter !== '' &&
-          productData.value.category === categoryFilter) {
-
+        if (categoryFilter === '') {
+          showProductCard(productData.value, productList);
+        } else if (productData.value.category === categoryFilter) {
           showProductCard(productData.value, productList);
         }
       });
