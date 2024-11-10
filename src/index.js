@@ -1,5 +1,5 @@
 //import { showProductCard } from "./modules/productCard/productCard.js";
-import { initProductList, loadMoreProducts } from "./modules/productList/productList.js";
+import { initProductList, loadMoreProducts, setCategorySelect } from "./modules/productList/productList.js";
 import { addProduct, deleteProduct, getCategories } from "./scripts/dataLoading.js";
 //import { loadProducts } from "./scripts/dataLoading.js";
 import "./styles/main.scss";
@@ -17,16 +17,21 @@ const sampleProductData = {
 }
 
 initProductList();
-getCategories();
+//getCategories();
 
 console.log("loaded from index.js");
 
 console.log("index.js code runs. Dev server and auto reload works");
 
-btnLoadMore.addEventListener("click", loadMoreProducts);
+btnLoadMore.addEventListener("click", (event) => {
+  loadMoreProducts(event.target);
+  event.target.setAttribute('disabled', '');
+});
 
 btnDeleteProduct.addEventListener("click", () => deleteProduct(10));
 btnAddProduct.addEventListener("click", () => addProduct(sampleProductData));
+
+setCategorySelect(btnLoadMore);
 
 
 
