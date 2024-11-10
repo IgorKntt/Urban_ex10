@@ -1,5 +1,5 @@
 $warn: #FF0000;
-$shadow: #ccc;
+$shadow: #ddd;
 
 * {
   box-sizing: border-box;
@@ -8,16 +8,39 @@ $shadow: #ccc;
 
 .productCard {
   max-width: 400px;
-  border: 1px $shadow solid;
   margin: 15px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 3px 3px 5px 3px $shadow;
+  //position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  &-img {
-    max-height: 400px;
-    max-width: 350px;
-    margin: 0 auto;
+  &__imgContainer {
+    margin: 20px auto;
+
+    flex-grow: 2;
+    display: flex;
+    align-items: center
   }
 
-  &-title {
+
+  &__img {
+    display: inline-block;
+    max-height: 350px;
+    max-width: 300px;
+  }
+
+  &__info {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    flex-grow: 0;
+  }
+
+  &__title {
     color: $warn;
   }
 }

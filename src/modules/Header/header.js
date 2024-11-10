@@ -1,4 +1,4 @@
-
+import './header.module.scss'
 
 export function showHeader() {
   let header = document.createElement("header");
