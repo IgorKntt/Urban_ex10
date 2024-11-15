@@ -3,6 +3,8 @@ import { initProductList, loadMoreProducts, setCategorySelect } from "@/modules/
 import { addProduct, deleteProduct, getCategories } from "@/scripts/dataLoading.js";
 //import { loadProducts } from "./scripts/dataLoading.js";
 import "@/styles/main.scss";
+import { showHeader } from "@/modules/Header/header.js";
+import { showFooter } from "@/modules/footer/footer.js";
 
 const btnLoadMore = document.getElementById('loadMoreProducts');
 const btnDeleteProduct = document.getElementById('deleteProduct');
@@ -16,8 +18,11 @@ const sampleProductData = {
   category: 'electronic'
 }
 
+showHeader();
+
 initProductList();
 //getCategories();
+showFooter();
 
 console.log("loaded from index.js");
 

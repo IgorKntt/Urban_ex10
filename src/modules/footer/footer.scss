@@ -1,0 +1,40 @@
+@use "sass:color";
+
+.footer {
+  padding: 48px 0 24px;
+  margin: 0;
+  margin-top: 64px;
+  background-color: black;
+  color: white;
+  font-style: normal;
+
+  a,
+  span {
+    color: white;
+    text-decoration: none;
+    font-style: normal;
+    vertical-align: middle;
+  }
+
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  &__address {
+    p {
+      margin-bottom: 24px;
+
+    }
+
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  &__logo {
+    display: block;
+    filter: invert(1);
+  }
+
+}
