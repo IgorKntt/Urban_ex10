@@ -1,12 +1,12 @@
-import { getCategories, loadProducts, loadSingleProduct } from "../../scripts/dataLoading.js";
-import { showProductCard } from "../productCard/productCard.js";
-import './productList.scss';
+import { getCategories, loadProducts, loadSingleProduct } from "@/scripts/dataLoading.js";
+import { setCategorySelect } from "@/modules/productList/categoryFilter/categoryFilter.js";
+import { showProductCard } from "@/modules/productList//productCard/productCard.js";
+import '@/modules/productList//productList.scss';
 
 const productList = document.getElementById("product-list");
 
 let productsData = [];
 
-let categoryFilter = '';
 
 /*let categories = getCategories().then(value => {
   console.log("Categories loaded in Product list module", value);
@@ -14,54 +14,23 @@ let categoryFilter = '';
 
 });*/
 
+let categoryFilter = '';
 
-export async function setCategorySelect() {
-  let categorySelect = document.createElement('div');
-  categorySelect.className = 'productList__categories';
-  categorySelect.setAttribute('id', 'productList__categories');
 
-  getCategories().then(value => showCategorySelect(value, categorySelect));
+export async function initProductList() {
+  try {
+    let result = await loadProducts(6);
+    console.log(result);
 
-}
-
-function showCategorySelect(selectData, elem) {
-  let categories = '<option value="">--Show all products--</option>';
-
-  selectData.forEach(category => {
-    categories = categories + `<option value="${category}">
-        ${category}
-      </option>`;
-  });
-
-  let categorySelect = `<label for="productList__select">
-      Show products filtered by category:
-    </label>
-    <select name="productList__select" id="productList__select">
-      ${categories};
-    </select>`;
-
-  elem.innerHTML = categorySelect;
-
-  //console.log(categorySelect);
-  productList.parentNode.prepend(elem);
-  elem.addEventListener('change',
-    (event) => filterProductList('category', event.target.value));
-}
-
-//let result = loadProducts(6);
-export function initProductList() {
-
-  let result = loadProducts(6);
-
-  result.then((res) => {
-    res.forEach((productData) => {
-      showProductCard(productData, productList);
-      productsData.push(productData);
+    result.forEach(prod => {
+      showProductCard(prod, productList);
+      productsData.push(prod);
     });
-    console.log('productsData:', productsData);
-  }).catch(error => {
+    setCategorySelect(productList);
+  } catch (error) {
     console.log('error loading data from API', error);
-  })
+  }
+
 }
 
 export function loadMoreProducts(btn) {
@@ -81,12 +50,10 @@ export function loadMoreProducts(btn) {
 
         productsData.push(productData.value);
 
-        if (categoryFilter === '') {
-          showProductCard(productData.value, productList);
-        } else if (productData.value.category === categoryFilter) {
-          showProductCard(productData.value, productList);
-        }
       });
+
+      filterProductList("category", categoryFilter)
+
       if (productsData.length < 20) {
         btn.removeAttribute('disabled');
         btn.innerHTML = "Загрузить еще";
@@ -108,6 +75,7 @@ export function filterProductList(filterBy, value) {
   }
 
   filteredProducts.forEach(prod => showProductCard(prod, productList));
+
 }
 
 

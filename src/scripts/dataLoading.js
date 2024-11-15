@@ -8,6 +8,7 @@ export async function loadProducts(limit) {
   try {
     console.log("Sending fetch request");
     let result = await fetch(url);
+    if (!result.ok) throw new Error("Network error");
     console.log("loading data");
     let value = await result.json();
     console.log(value);
@@ -82,6 +83,8 @@ export async function addProduct(productData) {
 
     console.log("Result of adding new product");
     console.dir(value);
+    alert(`New product added. Assigned id - ${value.id}`);
+
     return value;
 
   } catch (error) {
