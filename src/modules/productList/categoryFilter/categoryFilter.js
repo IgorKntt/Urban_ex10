@@ -1,5 +1,6 @@
-import { getCategories } from "../../../scripts/dataLoading";
+import { getCategories } from "@/scripts/dataLoading";
 import { filterProductList } from "../productList";
+import "./categoryFilter.scss"
 
 
 

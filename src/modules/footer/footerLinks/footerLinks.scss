@@ -1,0 +1,43 @@
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+
+  li {
+    padding: 0 20px;
+    color: white;
+
+    margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  li:not(:first-child) {
+    cursor: pointer;
+
+    &::after {
+      display: block;
+      content: '';
+      height: 1px;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      transition-property: width;
+      transition-duration: 0.2s;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &:hover::after {
+      width: 100%;
+
+    }
+
+  }
+}

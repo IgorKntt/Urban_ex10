@@ -22,8 +22,20 @@
   }
 
   &__address {
+    max-width: 300px;
+
     p {
-      margin-bottom: 24px;
+      margin-bottom: 36px;
+      display: flex;
+
+      img {
+        display: block;
+        margin-right: 10px;
+      }
+
+      span {
+        display: block;
+      }
 
     }
 
@@ -35,6 +47,62 @@
   &__logo {
     display: block;
     filter: invert(1);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    //align-items: cen;
+  }
+
+  &__subscribe {
+    max-width: 320px;
+
+    * {
+      margin-bottom: 20px;
+    }
+
+
+
+    &-email {
+      padding: 10px;
+      background-color: black;
+      border: 1px white solid;
+      border-radius: 10px;
+      position: relative;
+
+      * {
+        vertical-align: middle;
+        margin: 0;
+      }
+
+      input {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 5px;
+
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: white;
+        }
+      }
+
+      span {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 24px;
+        cursor: pointer;
+
+      }
+    }
+
   }
 
 }

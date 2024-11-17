@@ -13,18 +13,41 @@
 
     <div id="product-list" class="product-list"></div>
     <button id="loadMoreProducts" class="btn btn--load">Загрузить еще</button>
+    <button id="addProduct" class="btn btn--load">Добавить продукт</button>
     <button id="deleteProduct" class="btn">Удалить продукт</button>
-    <button id="addProduct" class="btn">Добавить продукт</button>
+
+
 
     <div class="popup">
+      <div id="addProduct" class="addProductForm">
+        <h2>Add New Product</h2>
+        <form action="">
+          <label for="newProductName">Product name</label>
+          <input name="newProductName" type="text" placeholder="Name">
+
+          <label for="newProductCategory">Product category</label>
+          <input name="newProductCategory" type="text" placeholder="Category">
+
+          <label for="newProductPrice">Product price</label>
+          <input name="newProductPrice" type="text" placeholder="Price">
+
+          <label for="newProductImage"">Link to image</label>
+          <input name=" newProductImage" type="text" placeholder="Image link">
+
+            <button id="btnAddNewProduct" class="btn">Submit</button>
+        </form>
+
+      </div>
+      <!--
       <div class="message">
 
         <div class="success">
           <p>&#x2713</p>
         </div>
-        <h1>Товар успешнор добавлен</h1>
+        <h1>Товар успешно добавлен</h1>
       </div>
     </div>
+    -->
 
   </main>
 
