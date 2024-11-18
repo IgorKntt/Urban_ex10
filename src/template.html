@@ -13,15 +13,15 @@
 
     <div id="product-list" class="product-list"></div>
     <button id="loadMoreProducts" class="btn btn--load">Загрузить еще</button>
-    <button id="addProduct" class="btn btn--load">Добавить продукт</button>
+    <button id="btnAddProduct" class="btn btn--load">Добавить продукт</button>
     <button id="deleteProduct" class="btn">Удалить продукт</button>
 
+    <div class="message__container" id="messageContainer"></div>
 
-
-    <div class="popup">
+    <div class="popup" style="display:none">
       <div id="addProduct" class="addProductForm">
         <h2>Add New Product</h2>
-        <form action="">
+        <form action="" id="newProduct">
           <label for="newProductName">Product name</label>
           <input name="newProductName" type="text" placeholder="Name">
 
@@ -29,12 +29,13 @@
           <input name="newProductCategory" type="text" placeholder="Category">
 
           <label for="newProductPrice">Product price</label>
-          <input name="newProductPrice" type="text" placeholder="Price">
+          <input name="newProductPrice" type="number" placeholder="Price">
 
-          <label for="newProductImage"">Link to image</label>
-          <input name=" newProductImage" type="text" placeholder="Image link">
+          <label for="newProductImage">Link to image</label>
+          <input name="newProductImage" type="url" placeholder="Image link">
 
-            <button id="btnAddNewProduct" class="btn">Submit</button>
+          <button id="btnAddNewProduct" class="btn">Submit</button>
+          <button id="btnCancelNewProduct" class="btn">Cancel</button>
         </form>
 
       </div>

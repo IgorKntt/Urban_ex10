@@ -1,0 +1,32 @@
+.message__container {
+  position: fixed;
+  left: 0vw;
+  top: 0vh;
+  width: 100vw;
+  padding: 25px 0 0;
+  margin: 0;
+  z-index: 800;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.message__element {
+  width: 100%;
+  max-width: 1440px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: 3px 3px 5px 3px #ccc;
+}
+
+.success {
+  background-color: #a1ffa9;
+}
+
+.error {
+  background-color: #ffa1a1;
+}

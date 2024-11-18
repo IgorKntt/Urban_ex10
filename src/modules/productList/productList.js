@@ -1,11 +1,14 @@
-import { getCategories, loadProducts, loadSingleProduct } from "@/scripts/dataLoading.js";
+import { getCategories, loadProducts, loadSingleProduct, addProduct } from "@/scripts/dataLoading.js";
 import { setCategorySelect } from "@/modules/productList/categoryFilter/categoryFilter.js";
 import { showProductCard } from "@/modules/productList//productCard/productCard.js";
 import '@/modules/productList//productList.scss';
+import { showMessage } from "@/modules/message/message.js";
+
 
 const productList = document.getElementById("product-list");
 
 let productsData = [];
+
 
 
 /*let categories = getCategories().then(value => {
@@ -28,7 +31,7 @@ export async function initProductList() {
     });
     setCategorySelect(productList);
   } catch (error) {
-    console.log('error loading data from API', error);
+    showMessage("error", "error loading data from API " + error);
   }
 
 }
@@ -60,7 +63,7 @@ export function loadMoreProducts(btn) {
       } else {
         btn.innerHTML = "Нет данных для загрузки";
       }
-    }).catch(error => console.log(error));
+    }).catch(error => showMessage("error", error));
 }
 
 export function filterProductList(filterBy, value) {
@@ -78,4 +81,23 @@ export function filterProductList(filterBy, value) {
 
 }
 
+export async function addNewProduct(newProductData) {
+
+
+  try {
+    let response = await addProduct(newProductData);
+
+    newProductData.id = response.id;
+    let index = productsData.findIndex(prod => prod.id === newProductData.id);
+    if (index === -1) index = productsData.length;
+
+    productsData[index] = newProductData;
+    filterProductList("category", categoryFilter);
+
+    showMessage("success", `New product <strong>${newProductData.title}</strong> added.`);
+  } catch (error) {
+    showMessage("error", error);
+  }
+
+}
 

@@ -1,3 +1,5 @@
+import { showMessage } from "@/modules/message/message.js";
+
 export async function loadProducts(limit) {
   let url = 'https://fakestoreapi.com/products';
 
@@ -9,13 +11,13 @@ export async function loadProducts(limit) {
     console.log("Sending fetch request");
     let result = await fetch(url);
     if (!result.ok) throw new Error("Network error");
-    console.log("loading data");
+    console.log("loading data product data");
     let value = await result.json();
-    console.log(value);
+    console.log("Product data loaded. ", value);
     return value;
 
   } catch (error) {
-    console.log("Error loading products", error);
+    showMessage("error", "Error loading products " + error);
   }
 }
 
@@ -28,13 +30,13 @@ export async function loadSingleProduct(productId) {
     let result = await fetch(url);
     if (!result.ok) throw new Error('Network problem. ');
 
-    console.log("loading data");
+    console.log("loading product data");
     let value = await result.json();
-    console.log(value);
+    console.log("Product data loaded. ", value);
     return value;
 
   } catch (error) {
-    console.log("Error loading products", error);
+    showMessage("error", "Error loading products data " + error);
   }
 }
 
@@ -44,7 +46,7 @@ export async function deleteProduct(productId) {
   try {
     console.log(`Sending fetch request for deleting product${productId}`);
     let result = await fetch(url, { method: 'DELETE' });
-    if (!result.ok) throw new Error('Network problem');
+    if (!result.ok) throw new Error('Network problem when deleting product');
 
     let value = await result.json();
 
@@ -54,7 +56,7 @@ export async function deleteProduct(productId) {
     }
 
     if (value.id === productId) {
-      alert(`Продукт: /n ${value.title} /n /n Успешно удален`);
+      showMessage("success", `Продукт: ${value.title} Успешно удален`);
     }
 
     console.log('Результат удаления объекта:');
@@ -62,7 +64,7 @@ export async function deleteProduct(productId) {
     return value;
 
   } catch (error) {
-    alert("Error deleting product " + error);
+    showMessage("error", "Error deleting product " + error);
   }
 }
 
@@ -76,20 +78,18 @@ export async function addProduct(productData) {
   try {
     console.log("Sending fetch request for adding new product");
     let result = await fetch(url, options);
-    if (!result.ok) throw new Error("Network error");
+    if (!result.ok) throw new Error("Network error when adding new product");
     console.log("Loading server response of adding new product");
 
     let value = await result.json();
 
-    console.log("Result of adding new product");
-    console.dir(value);
-    alert(`New product added. Assigned id - ${value.id}`);
+    //console.log("Result of adding new product");
+    //console.dir(value);
 
     return value;
 
   } catch (error) {
-    console.log('Результат добавления нового объекта');
-    console.log('Ошибка добавления нового товара ', error);
+    showMessage("error", "Ошибка добавления нового товара " + error);
   }
 }
 
@@ -99,7 +99,7 @@ export async function getCategories() {
   try {
     console.log("Sending fetch request for load categories");
     let result = await fetch(url);
-    if (!result.ok) throw new Error('Network error');
+    if (!result.ok) throw new Error('Network error while loading categories');
 
     console.log("Loading categories names");
     let value = await result.json();
@@ -107,6 +107,6 @@ export async function getCategories() {
     return value;
 
   } catch (error) {
-    console.log("Error loading categories ", error);
+    showMessage("error", "Error loading categories " + error);
   }
 }
