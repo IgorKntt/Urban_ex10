@@ -8,15 +8,6 @@ import { showMessage } from "@/modules/message/message.js";
 const productList = document.getElementById("product-list");
 
 let productsData = [];
-
-
-
-/*let categories = getCategories().then(value => {
-  console.log("Categories loaded in Product list module", value);
-  return value;
-
-});*/
-
 let categoryFilter = '';
 
 
@@ -59,9 +50,9 @@ export function loadMoreProducts(btn) {
 
       if (productsData.length < 20) {
         btn.removeAttribute('disabled');
-        btn.innerHTML = "Загрузить еще";
+        btn.innerHTML = "Load more";
       } else {
-        btn.innerHTML = "Нет данных для загрузки";
+        btn.innerHTML = "No dta for loading";
       }
     }).catch(error => showMessage("error", error));
 }

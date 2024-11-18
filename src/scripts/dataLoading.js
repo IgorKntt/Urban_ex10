@@ -52,14 +52,14 @@ export async function deleteProduct(productId) {
 
     if (value === null) {
       console.dir(value);
-      throw new Error("Удаляемый продкут в базе данных отсутствует");
+      throw new Error("No product in database");
     }
 
     if (value.id === productId) {
-      showMessage("success", `Продукт: ${value.title} Успешно удален`);
+      showMessage("success", `Product: ${value.title} successfully deleted from database`);
     }
 
-    console.log('Результат удаления объекта:');
+    console.log(`Received result of deleting product ${value.title}`);
     console.dir(value);
     return value;
 
@@ -89,7 +89,7 @@ export async function addProduct(productData) {
     return value;
 
   } catch (error) {
-    showMessage("error", "Ошибка добавления нового товара " + error);
+    showMessage("error", "Error while adding new product " + error);
   }
 }
 
