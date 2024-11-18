@@ -6,8 +6,10 @@ export function showProductCard(productData, parent) {
   productCard.className = 'productCard';
   productCard.dataset.productId = productData.id;
 
-  productCard.innerHTML = `<div class="productCard__imgContainer">
+  productCard.innerHTML = `<button class="btn btn--delete">Delete product</button>
+    <div class="productCard__imgContainer">
       <img class="productCard__img" src="${productData.image}" alt="image">
+
     </div>
     <div class="productCard__info">
       <h3 class="productCard__title">${productData.title}</h3>

@@ -1,9 +1,8 @@
-import { getCategories, loadProducts, loadSingleProduct, addProduct } from "@/scripts/dataLoading.js";
+import { deleteProduct, loadProducts, loadSingleProduct, addProduct } from "@/scripts/dataLoading.js";
 import { setCategorySelect } from "@/modules/productList/categoryFilter/categoryFilter.js";
 import { showProductCard } from "@/modules/productList//productCard/productCard.js";
 import '@/modules/productList//productList.scss';
 import { showMessage } from "@/modules/message/message.js";
-
 
 const productList = document.getElementById("product-list");
 
@@ -52,7 +51,7 @@ export function loadMoreProducts(btn) {
         btn.removeAttribute('disabled');
         btn.innerHTML = "Load more";
       } else {
-        btn.innerHTML = "No dta for loading";
+        btn.innerHTML = "No data for loading";
       }
     }).catch(error => showMessage("error", error));
 }
@@ -74,10 +73,8 @@ export function filterProductList(filterBy, value) {
 
 export async function addNewProduct(newProductData) {
 
-
   try {
     let response = await addProduct(newProductData);
-
     newProductData.id = response.id;
     let index = productsData.findIndex(prod => prod.id === newProductData.id);
     if (index === -1) index = productsData.length;
@@ -89,6 +86,16 @@ export async function addNewProduct(newProductData) {
   } catch (error) {
     showMessage("error", error);
   }
-
 }
+
+productList.addEventListener("click", event => {
+  if (event.target.innerHTML === "Delete product") {
+    let prodId = event.target.parentNode.dataset.productId;
+    deleteProduct(prodId).then(result => {
+      if (result?.id == prodId) {
+        event.target.parentNode.remove();
+      }
+    })
+  }
+})
 

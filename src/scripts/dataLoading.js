@@ -44,7 +44,7 @@ export async function deleteProduct(productId) {
   let url = `https://fakestoreapi.com/products/${productId}`;
 
   try {
-    console.log(`Sending fetch request for deleting product${productId}`);
+    console.log(`Sending fetch request for deleting product ${productId}`);
     let result = await fetch(url, { method: 'DELETE' });
     if (!result.ok) throw new Error('Network problem when deleting product');
 
@@ -55,7 +55,9 @@ export async function deleteProduct(productId) {
       throw new Error("No product in database");
     }
 
-    if (value.id === productId) {
+    console.log(value.id, productId);
+    if (value.id == productId) {
+
       showMessage("success", `Product: ${value.title} successfully deleted from database`);
     }
 
